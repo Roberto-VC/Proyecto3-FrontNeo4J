@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import Header from "../components/Header";
+import React, { useContext } from "react";
 import { MovieContext } from "../contexts/movieProvider";
 import logo from '../assets/logo.png'
 import { useNavigate } from "react-router";
@@ -9,17 +8,13 @@ import Popup from 'reactjs-popup';
 import Review from "../components/Review";
 import Reviews from "../components/Reviews";
 
+import banner from '../assets/banner.png'
+
 const Movie = () => {
-  const movie = useContext(MovieContext)
+  const { movie } = useContext(MovieContext)
+  console.table(movie)
   const user = localStorage.getItem('username')
   const navigate = useNavigate()
-
-
-  let genres = movie.genres.reduce(
-    (acc, value) => value  + ', ' + acc,
-    ''
-  )
-  genres = genres.substring(0, genres.length - 2)
 
   const vignete = {background: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(128,128,128,0) 100%)'}
   console.log(movie)
@@ -42,23 +37,22 @@ const Movie = () => {
       <div className="main-content-grid">
         <div className='hero-movie'>
           <img
-            src={"http://localhost:5000/getCover/" + movie.cover}
+            src={banner}
             alt=""
           />
           <div className="vin"></div>
         </div>
         <div className="front">
           <div className="front-title">
-            <h1 className="title">{movie.title}</h1>
-            <p className="year">{movie.year}</p>
-            <p className="genres">{genres}</p>
+            <h1 className="title">{movie.nombre}</h1>
+            <p className="year">{movie.release_date._Date__year}</p>
           </div>
           <div className="user-actions">
             <Popup trigger={<button> Escribir Review</button>}  modal>
-              <div className="Review"><Review movie={movie._id}/></div>
+              <div className="Review"><Review movie={movie.movie_id}/></div>
             </Popup>
             <Popup trigger={<button> Ver Reviews</button>}  modal>
-              <div className="Review"><Reviews movie={movie._id}/></div>
+              <div className="Review"><Reviews movie={movie.movie_id}/></div>
             </Popup>
           </div>
         </div>
@@ -66,30 +60,14 @@ const Movie = () => {
           <hr />
           <div className="detail-wrapper">
             <div className="column1">
-              <h3>{movie.title}</h3>
-              <p>{movie.sinopsis}</p>
-              <ReactStars size="30" value={movie.avg_rating} edit={false} isHalf={true}/>
+              <h3>{movie.nombre}</h3>
+              <p>{movie.descripcion}</p>
+              <ReactStars size="30" value={movie.rating} edit={false} isHalf={true}/>
             </div>
             <div className="info">
               <div className="info1">
                 <InfoToken title="Duration:" info={movie.duracion}/>
-                <InfoToken title="Release Date:" info={movie.year}/>
-                <InfoToken title="Genre:" info={genres}/>
-              </div>
-              <div className="info2">
-                <InfoToken title="Director:" info={movie.director.nombre + ' ' + movie.director.apellido}/>
-                <div className="info-token">
-                  <h3>Starring:</h3>
-                  {movie.elenco.map((actor) => (
-                    <div className="actor">
-                      <p>{actor.nombre} - {actor.nationality}</p>
-                      <ul>
-                        {actor.oscar? <li>Oscar Winner</li> : ''}
-                        <li>Age: {actor.edad}</li>
-                      </ul>
-                    </div>
-                  ))}
-                </div>
+                <InfoToken title="Release Date:" info={movie.release_date._Date__year}/>
               </div>
             </div>
           </div>

@@ -6,10 +6,12 @@ import '../styles/Homepage.scss'
 
 const HomePage = ( ) => {
   const user = localStorage.getItem('username')
-  const [movies, setMovies] = useState([])
   const [data, setData] = useState("none");
   const [info, setInfo] = useState("");
-  
+  console.table({
+    data,
+    info
+  })
 
   const mainContent = (user === null) ? (
     <>
@@ -22,37 +24,12 @@ const HomePage = ( ) => {
       </div>
     </>
   ) : (
-    <><Header changeinfo={info => setInfo(info)} changedata={data => setData(data)}/>
-    {(() => {
-        if (data==="none" || info === "") {
-          return (
-            <MovieGrid
-            movies={movies}
-            setMovies={setMovies}
-            search={data}
-            bar={info}
-            />
-          )
-        } else if (data === "title" && info !== "") {
-          return (
-            <MovieGrid
-            movies={movies}
-            setMovies={setMovies}
-            search={data}
-            bar={info}
-            />
-          )
-        } else if (data === "genre" && info !== ""){
-          return (
-            <MovieGrid
-            movies={movies}
-            setMovies={setMovies}
-            search={data}
-            bar={info}
-            />
-          )
-        }
-      })()}
+    <>
+      <Header changeinfo={info => setInfo(info)} changedata={data => setData(data)}/>
+      <MovieGrid
+        search={data}
+        bar={info}
+      />
     </>
   )
 

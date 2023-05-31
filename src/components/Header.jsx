@@ -37,12 +37,30 @@ const Header = (props) => {
           onChange={(event) => props.changeinfo(event.target.value)}
         />
         <div className="dropdown">
-        <button className="dropbtn">Filtro</button>
-          <div className="dropdown-content">
-          <button onClick={() => props.changedata("none")}>Escoja Filtro</button>
-            <button onClick={() => props.changedata("title")}>Title</button>
-            <button onClick={() => props.changedata("genre")}>Gender</button>
-          </div>
+          <button
+            className="dropbtn"
+            onClick={() => props.changedata('genres')}
+          >Filtrar por genero</button>
+          <button
+            className="dropbtn"
+            onClick={() => props.changedata('Actor')}
+          >Filtrar por Actor</button>
+          <button
+            className="dropbtn"
+            onClick={() => props.changedata('Director')}
+          >Filtrar por Director</button>
+          <button
+            className="dropbtn"
+            onClick={() => props.changedata('recomendations')}
+          >Sorprendeme</button>
+          <button
+            className="dropbtn"
+            onClick={() => props.changedata('premio')}
+          >Peliculas Premiadas</button>
+          <button
+            className="dropbtn"
+            onClick={() => props.changedata('none')}
+          >Ver todo</button>
         </div> 
       </div>
       <h3>{user}</h3>

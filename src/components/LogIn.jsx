@@ -43,6 +43,7 @@ class LogIn extends Component {
         }
         else{
           alert("Usuario o contraseña incorrecta")
+          console.log(data)
         }
       }))
     }else{

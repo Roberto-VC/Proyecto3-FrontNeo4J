@@ -1,6 +1,8 @@
 .main-content-grid {
   display: block;
   height: fit-content;
+  position: relative;
+  top: -40px;
   min-height: calc(100vh - 70px);
   background: rgb(0,0,0);
   background: linear-gradient(
@@ -53,7 +55,6 @@
         margin-top: 1px;
         font-family: sans-serif;
         font-size: 25px;
-
       }
     }
   }
