@@ -1,0 +1,8 @@
+div.wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+div.inline {
+    display: inline-block;
+}

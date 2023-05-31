@@ -1,4 +1,5 @@
 import React, {useState, Component, useEffect} from "react"
+import '../styles/index.css'
 
 class LogIn extends Component {
   constructor() {
